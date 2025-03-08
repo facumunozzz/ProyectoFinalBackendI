@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Productos</title>
+</head>
+<body>
+    {{{body}}}
+
+<h1>Listado de productos</h1>
+
+<div>
+    {{#each products}}
+    <div class="product">
+        <h3>{{this.nombre}}</h3>
+        <p>{{this.descripcion}}</p>
+        <p>Precio: ${{this.precio}}</p>
+        <p>Categoría: {{this.categoria}}</p>
+
+        <form action="/carts/{{cartId}}/products/{{this._id}}" method="POST">
+            <button type="submit">Agregar al carrito</button>
+        </form>
+
+        <a href="/products/{{this._id}}">Ver detalles</a>
+    </div>
+    {{/each}}
+</div>
+
+<div class="pagination">
+    {{#if pagination.hasPrevPage}}
+    <a href="/products?page={{pagination.prevPage}}">Anterior</a>
+    {{/if}}
+
+    Página {{pagination.currentPage}} de {{pagination.totalPages}}
+
+    {{#if pagination.hasNextPage}}
+    <a href="/products?page={{pagination.nextPage}}">Siguiente</a>
+    {{/if}}
+</div>
+
+<h1>{{product.nombre}}</h1>
+<p>{{product.descripcion}}</p>
+<p>Precio: ${{product.precio}}</p>
+<p>Categoría: {{product.categoria}}</p>
+
+<form action="/carts/{{cartId}}/products/{{product._id}}" method="POST">
+    <button type="submit">Agregar al carrito</button>
+</form>
+
+<a href="/products">Volver a productos</a>
+
+<h1>Carrito de compras</h1>
+{{#each productos}}
+<div class="cart-product">
+    <h3>{{this.nombre}}</h3>
+    <p>Descripción: {{this.descripcion}}</p>
+    <p>Precio: ${{this.precio}}</p>
+    <p>Cantidad en carrito: {{this.cantidad}}</p>
+
+    <form action="/carts/{{../cartId}}/products/{{this._id}}" method="POST">
+        <input type="hidden" name="_method" value="DELETE" />
+        <button type="submit">Eliminar del carrito</button>
+    </form>
+</div>
+{{/each}}
+
+<form action="/carts/{{cartId}}" method="POST">
+    <input type="hidden" name="_method" value="DELETE" />
+    <button type="submit">Vaciar carrito</button>
+</form>
+
+<a href="/products">Volver a productos</a>
+
+</body>
+</html>
