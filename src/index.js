@@ -1,7 +1,7 @@
 import express from 'express'
 import handlebars from 'express-handlebars'
 import path from 'node:path'
-import VistaRoute from './routes/vista.route.js'
+import VistaRoute from './routes/vistas.router.js'
 import ProductsRoute from './routes/products.route.js'
 import CarritoRoute from './routes/carts.route.js'
 import { connectToMongo } from './connections/mongo.js'

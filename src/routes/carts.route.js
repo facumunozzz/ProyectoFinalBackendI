@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { CarritoModel } from "../models/materias.model.js";
-import { CarritoDao } from "../models/dao/materias.dao.js";
+import { CarritoModel } from "./../models/carrito.model.js";
+import { CarritoDao } from "../models/dao/carrito.dao.js";
 
 const route = Router();
 const CarritoService = new CarritoDao(CarritoModel);
